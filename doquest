@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+doquest() {
+    local WORLD=$1
+    local QUEST=$2
+    if [[ ! -f "questlog/$WORLD-$QUEST.json" ]]; then
+        echo "Your answer is missing from the questlog!"
+        echo "I expected the file to be named '$WORLD-$QUEST.json' under the directory questlog/"
+        echo "Can you make sure it's there?"
+        echo ""
+        return 1
+    fi
+}
+
+doquest $@
