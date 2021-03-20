@@ -1,0 +1,31 @@
+{
+  "     ██╗ ██████╗      ██╗      █████╗ ███╗   ██╗██████╗ ": "",
+  "     ██║██╔═══██╗     ██║     ██╔══██╗████╗  ██║██╔══██╗": "",
+  "     ██║██║   ██║ ██║ ██║     ███████║██╔██╗ ██║██║  ██║": "",
+  "██   ██║██ ▄▄ ██║     ██║     ██╔══██║██║╚██╗██║██║  ██║": "",
+  "╚█████╔╝╚█████ ╔╝     ███████╗██║  ██║██║ ╚████║██████╔╝": "",
+  " ╚════╝  ╚══▀▀▀╝      ╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝ ": "",
+  "          ": "|",
+  "START HERE": "v",
+  "Run this command on the command line": "jq -r '.quests[0]' W00-intro.json",
+  "quests": [
+    "Each \"World\" file has a quests array, with a challenge to complete with jq.\nthis is the beginning of your jq journey.\n\nStart by running 'jq --help' on the command line. Look for the example and try \nrunning it. Save the output of the example by adding '> questlog/00-0.json' to \nthe end of the example command.\n\nIf you need a hint, run `cat W00-intro.json | jq '.hints[0][0]'` on the command line.\n\nTo test your result, run './doquest'\n\nWhen you're ready to move on, run `jq -r '.quests[1]' W00-intro.json`",
+    "Some things to know:\n\nYou should output these quests with the \"raw\" option (i.e. `cat W00-intro.json | jq -r '.quests[1]'`) for better reading and accurate copy/pasting.\n\nThe answer will always be the output of the correct jq, written to a file saved under questlog/. Name formatting is WW-Q.json, where WW is the two digit world, and Q is the single digit quest number.\n\nEXAMPLE:\n  To read this you performed jq on W00-intro.json. World is 00.\n  You accessed the 1st index in the quests array (`.quests[1]`). Quest is 1.\n  combined, that's 00-1.json\n  (don't forget to use `tee` or redirect output (`> questlog/00-1.json`) to quickly save.\n\n?> In the last quest you used `jq .` to pretty-print a json string. Can you cat the contents of this entire file using jq?\n\n(For hints, run `cat W00-intro.json | jq '.hints[1][0]",
+    "The `.` in jq is the \"identity\" filter, which simply prints the entire contents. Adding a word after access the key and print the value.\n\n?> Most worlds have a .data property containing lots more json to operate on for the quest. Can you output the entire \ncontents of the data property in this file?"
+  ],
+  "hints": [
+    [
+      "The result should look something like `echo ___ | jq ___ > questlog/00-0.json` \n\nRun `cat W00-intro.json | jq '.hints[0][1]' -r` For the next hint.",
+      "Try `echo '{\"foo\": \"bar\"}' | jq '.' > questlog/00-0.json`"
+    ],
+    [
+      "You just printed this with `jq .hints[1][0]`. Printing _everything_ would involve just a dot for the jq expression."
+    ],
+    [
+      "You just printed this with `jq '.hints[2][0]`. Printing the entire contents of the hints array would be\n `jq '.hints'. The name of the key you're trying to print the entire contents of now is `data`"
+    ]
+  ],
+  "data": {
+    "hello": "jq warrior!"
+  }
+}
