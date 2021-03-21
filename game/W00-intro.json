@@ -27,5 +27,7 @@
   ],
   "data": {
     "hello": "jq warrior!"
-  }
+  },
+  "": "",
+  "What are you doing down here?": "If you ran `cat` on this file, maybe try running `head` instead."
 }
