@@ -1,5 +1,17 @@
 #!/usr/bin/env bash
 
+doquest_input() {
+  local INPUT=$1
+  shift
+  local WORLD=$1
+  local QUEST=$2
+  if [[ -z "$(echo "$INPUT" | diff answers/"$WORLD"-"$QUEST".json -)" ]]; then
+    msg_success
+  else
+    msg_failure
+  fi
+}
+
 doquest() {
     local WORLD=$1
     local QUEST=$2
@@ -11,12 +23,32 @@ doquest() {
         return 1
     fi
     if [[ -z "$(diff {questlog,answers}/$WORLD-$QUEST.json)" ]]; then
-      echo '･ﾟ:* QUEST COMPLETE! *:･ﾟ'
-      echo ''
-      echo 'Nice work!'
-      return 0
+      msg_success
+    else
+      msg_failure
     fi
 
 }
 
-doquest "$@"
+msg_success() {
+    echo '･ﾟ:* QUEST COMPLETE! *:･ﾟ'
+    echo ''
+    echo 'Nice work!'
+    return 0
+}
+
+msg_failure() {
+  # TODO, optionally show diff
+  echo "not quite, try again."
+  return 1
+}
+
+
+read -r -d '' INPUT
+
+if [[ -n "$INPUT" ]]; then
+  doquest_input "$INPUT" "$@"
+else
+  doquest "$@"
+fi
+
