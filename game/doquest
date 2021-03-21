@@ -10,6 +10,13 @@ doquest() {
         echo ""
         return 1
     fi
+    if [[ -z "$(diff {questlog,answers}/$WORLD-$QUEST.json)" ]]; then
+      echo '･ﾟ:* QUEST COMPLETE! *:･ﾟ'
+      echo ''
+      echo 'Nice work!'
+      return 0
+    fi
+
 }
 
-doquest $@
+doquest "$@"
